@@ -1,0 +1,10 @@
+The cat sat on the mat and looked out the window.
+A dog ran through the park chasing a red ball.
+The quick brown fox jumps over the lazy dog.
+Node.js uses an event-driven, non-blocking I/O model.
+Express is a minimal and flexible Node.js web framework.
+Grep searches files for lines matching a pattern.
+Stopwords are common words filtered out during text search.
+Retrieval augmented generation combines search with a language model.
+The cat knocked the vase off the table.
+Dogs and cats are common household pets.
