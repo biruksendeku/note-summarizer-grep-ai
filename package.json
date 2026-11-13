@@ -1,0 +1,27 @@
+{
+  "name": "note-summarizer-grep-ai",
+  "version": "1.0.0",
+  "description": "A dummy AI that uses plain grep command to summarize or give back sentences that has that word in them, to demonstrate how AI reads and analyses documents.",
+  "homepage": "https://github.com/biruksendeku/note-summarizer-grep-ai#readme",
+  "bugs": {
+    "url": "https://github.com/biruksendeku/note-summarizer-grep-ai/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/biruksendeku/note-summarizer-grep-ai.git"
+  },
+  "license": "MIT",
+  "author": "DevYay",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.10",
+    "express": "^5.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
