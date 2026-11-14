@@ -7,10 +7,10 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const CORPUS = "./src/utils/corpus.txt";
+const CORPUS = "./src/text_resources/corpus.txt";
 const STOPWORDS = new Set(
   fs
-    .readFileSync("./src/utils/stopwords.txt", "utf8")
+    .readFileSync("./src/text_resources/stopwords.txt", "utf8")
     .split("\n")
     .map((w) => w.trim().toLocaleLowerCase())
     .filter(Boolean),
