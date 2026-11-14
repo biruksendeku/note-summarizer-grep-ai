@@ -1,6 +1,8 @@
 import { execFile } from "child_process";
 const CORPUS = "../text_resources/corpus.txt";
-const STOPWORDS = require("../utils/stopwords");
+console.log("CORPUS: ", CORPUS);
+import { createTerms } from "../utils/createTerms";
+import { createPattern } from "../utils/createPattern";
 
 export const summarizeGet = (req, res) => {
   res.send(`
@@ -15,11 +17,9 @@ export const summarizePost = async (req, res) => {
   const { prompt } = req.body;
   if (!prompt) return res.status(400).json({ error: "no prompt" });
 
-  const terms = prompt.split(/\+s/).filter((w) => w && !STOPWORDS.has(w));
+  const terms = createTerms(prompt);
   if (!terms.length) return res.json({ matches: [] });
-
-  const escaped = terms.map((t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
-  const pattern = escaped.join("|");
+  const pattern = createPattern(terms);
 
   execFile(
     "grep",
