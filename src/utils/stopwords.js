@@ -1,3 +1,5 @@
+import fs from "fs";
+
 export const STOPWORDS = new Set(
   fs
     .readFileSync("./src/text_resources/stopwords.txt", "utf8")

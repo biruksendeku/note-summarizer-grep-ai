@@ -1,3 +1,4 @@
+import { execFile } from "child_process";
 const CORPUS = "../text_resources/corpus.txt";
 const STOPWORDS = require("../utils/stopwords");
 
