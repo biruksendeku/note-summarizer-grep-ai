@@ -12,7 +12,7 @@ export const summarizeGet = (req, res) => {
 };
 
 export const summarizePost = async (req, res) => {
-  const prompt = (req.body.prompt || "").toLowerCase().trim();
+  const { prompt } = req.body;
   if (!prompt) return res.status(400).json({ error: "no prompt" });
 
   const terms = prompt.split(/\+s/).filter((w) => w && !STOPWORDS.has(w));

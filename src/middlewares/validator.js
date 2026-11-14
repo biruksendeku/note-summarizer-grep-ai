@@ -6,6 +6,7 @@ export const summarizeValidator = [
     .notEmpty()
     .withMessage("Prompt cannot be empty")
     .bail()
+    .toLowerCase()
     .matches(/^[A-Za-z0-9-_]+$/)
     .withMessage("Prompt contains invalid characters")
     .bail()
