@@ -1,8 +1,9 @@
 import express from "express";
 const router = express.Router();
-const { summarizeGet, summarizePost } = require("../controllers/summarize");
+import { summarizeGet, summarizePost } from "../controllers/summarize";
+import { summarizeValidator } from "../middlewares/validator";
 
 router.get("/ask", summarizeGet);
-router.post("/ask", summarizePost);
+router.post("/ask", summarizeValidator, summarizePost);
 
 export default router;
