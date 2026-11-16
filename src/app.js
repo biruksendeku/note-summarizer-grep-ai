@@ -24,7 +24,7 @@ app.use("/", summarizeRoutes);
 
 app.use((req, res) => {
   if (req.accepts("html")) {
-    return res.status(404).render("404");
+    return res.status(404).render("errors/404");
   } else {
     res.status(404).json({
       success: false,
