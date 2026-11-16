@@ -1,8 +1,12 @@
 import { execFile } from "child_process";
-const CORPUS = "../text_resources/corpus.txt";
-console.log("CORPUS: ", CORPUS);
+import { fileURLToPath } from "node:url";
+
 import { createTerms } from "../utils/createTerms.js";
 import { createPattern } from "../utils/createPattern.js";
+
+const CORPUS = fileURLToPath(
+  new URL("../text_resources/corpus.txt", import.meta.url),
+);
 
 export const summarizeGet = (req, res) => {
   res.send(`
