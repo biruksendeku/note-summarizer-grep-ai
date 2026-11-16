@@ -9,20 +9,34 @@ const CORPUS = fileURLToPath(
 );
 
 export const summarizeGet = (req, res) => {
-  res.send(`
-    <form action="/ask" method="post">
-      <input name="prompt" type="text" placeholder="Enter your keyword..." />
-      <button type="submit">Submit</button>
-    </form>
-    `);
+  res.render("summarize", {
+    prompt: "",
+    terms: null,
+    matches: null,
+    error: null,
+  });
 };
 
 export const summarizePost = async (req, res) => {
   const { prompt } = req.body;
-  if (!prompt) return res.status(400).json({ error: "no prompt" });
+  if (!prompt) {
+    return res.status(400).render("summarize", {
+      prompt: "",
+      terms: null,
+      matches: null,
+      error: "Enter a keyword or phrase to search.",
+    });
+  }
 
   const terms = createTerms(prompt);
-  if (!terms.length) return res.json({ matches: [] });
+  if (!terms.length) {
+    return res.render("summarize", {
+      prompt,
+      terms,
+      matches: [],
+      error: null,
+    });
+  }
   const pattern = createPattern(terms);
 
   execFile(
@@ -32,10 +46,20 @@ export const summarizePost = async (req, res) => {
     (err, stdout) => {
       if (err && err.code !== 1) {
         console.error(err);
-        return res.status(500).json({ error: err.message });
+        return res.status(500).render("summarize", {
+          prompt,
+          terms,
+          matches: null,
+          error: "Search failed. Please try again.",
+        });
       }
       const matches = stdout.split("\n").filter(Boolean);
-      res.json({ prompt, terms, matches });
+      res.render("summarize", {
+        prompt,
+        terms,
+        matches,
+        error: null,
+      });
     },
   );
 };

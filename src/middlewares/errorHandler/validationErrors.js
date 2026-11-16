@@ -1,12 +1,19 @@
 import { validationResult } from "express-validator";
-import { BadRequestError } from "./customErrors";
+import { BadRequestError } from "./customErrors.js";
 
 export const handleValidationErrors = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    // get the first error message - I used .bile() but this is conventional
-    const errMsg = errors.array().map((e) => e.msg);
-    throw new BadRequestError(errMsg[0]);
+    const errMsg = errors.array()[0].msg;
+    if (req.accepts("html")) {
+      return res.status(400).render("summarize", {
+        prompt: req.body.prompt ?? "",
+        terms: null,
+        matches: null,
+        error: errMsg,
+      });
+    }
+    throw new BadRequestError(errMsg);
   }
   next();
 };
