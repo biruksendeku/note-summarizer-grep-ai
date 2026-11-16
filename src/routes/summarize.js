@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
-import { summarizeGet, summarizePost } from "../controllers/summarize";
-import { summarizeValidator } from "../middlewares/validator";
+import { summarizeGet, summarizePost } from "../controllers/summarize.js";
+import { summarizeValidator } from "../middlewares/validator.js";
 
 router.get("/ask", summarizeGet);
 router.post("/ask", summarizeValidator, summarizePost);

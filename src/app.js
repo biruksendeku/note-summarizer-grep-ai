@@ -1,5 +1,5 @@
 import express from "express";
-import summarizeRoutes from "./routes/summarize";
+import summarizeRoutes from "./routes/summarize.js";
 
 const app = express();
 

@@ -1,8 +1,8 @@
 import { execFile } from "child_process";
 const CORPUS = "../text_resources/corpus.txt";
 console.log("CORPUS: ", CORPUS);
-import { createTerms } from "../utils/createTerms";
-import { createPattern } from "../utils/createPattern";
+import { createTerms } from "../utils/createTerms.js";
+import { createPattern } from "../utils/createPattern.js";
 
 export const summarizeGet = (req, res) => {
   res.send(`

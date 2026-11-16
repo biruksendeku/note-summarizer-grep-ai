@@ -1,4 +1,4 @@
-import STOPWORDS from "../utils/stopwords";
+import { STOPWORDS } from "./stopwords.js";
 console.log("STOPWORDS: ", STOPWORDS);
 
 export const createTerms = (prompt) => {
