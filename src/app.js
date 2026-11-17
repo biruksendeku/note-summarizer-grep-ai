@@ -1,12 +1,11 @@
 import express from "express";
-import { fileURLToPath } from "node:url";
 import { errorHandler } from "./middlewares/errorHandler/handler.js";
 import summarizeRoutes from "./routes/summarize.js";
 
 const app = express();
 
-app.set("view engine", "ejs");
-app.set("views", fileURLToPath(new URL("./views", import.meta.url)));
+// app.set("view engine", "ejs");
+// app.set("views", fileURLToPath(new URL("./views", import.meta.url)));
 app.set("view cache", process.env.NODE_ENV === "development" ? true : false);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -23,14 +22,10 @@ app.get("/health", (req, res) => {
 app.use("/", summarizeRoutes);
 
 app.use((req, res) => {
-  if (req.accepts("html")) {
-    return res.status(404).render("errors/404");
-  } else {
-    res.status(404).json({
-      success: false,
-      message: "Page Not Found",
-    });
-  }
+  res.status(404).json({
+    success: false,
+    message: "Page Not Found",
+  });
 });
 app.use(errorHandler);
 

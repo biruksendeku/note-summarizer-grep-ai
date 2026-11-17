@@ -8,19 +8,10 @@ const CORPUS = fileURLToPath(
   new URL("../text_resources/corpus.txt", import.meta.url),
 );
 
-export const summarizeGet = (req, res) => {
-  res.render("summarize", {
-    prompt: "",
-    terms: null,
-    matches: null,
-    error: null,
-  });
-};
-
 export const summarizePost = async (req, res) => {
   const { prompt } = req.body;
   if (!prompt) {
-    return res.status(400).render("summarize", {
+    return res.status(400).json({
       prompt: "",
       terms: null,
       matches: null,
@@ -30,7 +21,7 @@ export const summarizePost = async (req, res) => {
 
   const terms = createTerms(prompt);
   if (!terms.length) {
-    return res.render("summarize", {
+    return res.status(200).json({
       prompt,
       terms,
       matches: [],
@@ -46,7 +37,7 @@ export const summarizePost = async (req, res) => {
     (err, stdout) => {
       if (err && err.code !== 1) {
         console.error(err);
-        return res.status(500).render("summarize", {
+        return res.status(500).json({
           prompt,
           terms,
           matches: null,
@@ -54,7 +45,7 @@ export const summarizePost = async (req, res) => {
         });
       }
       const matches = stdout.split("\n").filter(Boolean);
-      res.render("summarize", {
+      res.status(200).json({
         prompt,
         terms,
         matches,
