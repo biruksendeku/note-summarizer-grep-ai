@@ -1,6 +1,6 @@
 import express from "express";
 import { createBullBoard } from "@bull-board/api";
-import { BullAdapter, BullMQAdapter } from "@bull-board/api/bullMQAdapter";
+import { BullMQAdapter } from "@bull-board/api/bullMQAdapter";
 import { ExpressAdapter } from "@bull-board/express";
 import { summarizerQueue } from "./queues/summarize-loader.js";
 import { errorHandler } from "./middlewares/errorHandler/handler.js";
