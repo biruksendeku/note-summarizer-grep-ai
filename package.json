@@ -16,7 +16,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "start-worker": "node ./src/workers/summarize-loader.js"
   },
   "dependencies": {
     "@bull-board/api": "^9.13.2",
