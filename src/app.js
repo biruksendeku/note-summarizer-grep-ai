@@ -8,16 +8,15 @@ import summarizeRoutes from "./routes/summarize.js";
 
 const app = express();
 
+// setting visual bull tracker
 const serverAdapter = new ExpressAdapter();
 serverAdapter.setBasePath("/admin/queues");
-
 createBullBoard({
   queues: [new BullMQAdapter(summarizerQueue)],
   serverAdapter,
 });
 
-// app.set("view engine", "ejs");
-// app.set("views", fileURLToPath(new URL("./views", import.meta.url)));
+// app level settings
 app.set("view cache", process.env.NODE_ENV === "development" ? true : false);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -31,15 +30,19 @@ app.get("/health", (req, res) => {
   });
 });
 
+// routers
 app.use("/", summarizeRoutes);
 app.use("/admin/queues", serverAdapter.getRouter());
 
+// 404 handler
 app.use((req, res) => {
   res.status(404).json({
     success: false,
     message: "Page Not Found",
   });
 });
+
+// overall error handler
 app.use(errorHandler);
 
 export default app;
