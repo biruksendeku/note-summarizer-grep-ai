@@ -8,15 +8,16 @@ import summarizeRoutes from "./routes/summarize.js";
 
 const app = express();
 
-// setting visual bull tracker
+// creating server adapter to visualize workflow of bull-mq
 const serverAdapter = new ExpressAdapter();
 serverAdapter.setBasePath("/admin/queues");
+
+// creating bull board ui
 createBullBoard({
   queues: [new BullMQAdapter(summarizerQueue)],
   serverAdapter,
 });
 
-// app level settings
 app.set("view cache", process.env.NODE_ENV === "development" ? true : false);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -34,7 +35,6 @@ app.get("/health", (req, res) => {
 app.use("/", summarizeRoutes);
 app.use("/admin/queues", serverAdapter.getRouter());
 
-// 404 handler
 app.use((req, res) => {
   res.status(404).json({
     success: false,

@@ -1,3 +1,4 @@
+import { summarizerQueue } from "../../queues/summarize-loader.js";
 import { BadRequestError } from "../../middlewares/errorHandler/customErrors.js";
 
 export const addSummarizerJob = async (prompt, client) => {
