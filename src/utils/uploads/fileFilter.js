@@ -1,5 +1,5 @@
 import path from "path";
-import { BadRequestError } from "../middlewares/customErrors.js";
+import { BadRequestError } from "../../middlewares/errorHandler/customErrors.js";
 
 export const fileFilter = (req, file, cb) => {
   const ext = path.extname(file.originalname);

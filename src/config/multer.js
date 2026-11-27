@@ -1,7 +1,7 @@
 import multer from "multer";
-import { fileFilter } from "../utils/fileFilter.js";
-import { createFolder } from "../utils/createFolder.js";
-import { generateUniqueSuffix } from "../utils/generateUniqueSuffix.js";
+import { fileFilter } from "../utils/uploads/fileFilter.js";
+import { createFolder } from "../utils/uploads/createFolder.js";
+import { generateUniqueSuffix } from "../utils/uploads/generateUniqueSuffix.js";
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {

@@ -1,7 +1,7 @@
 import { execFile } from "child_process";
 import { fileURLToPath } from "node:url";
-import { createTerms } from "../utils/createTerms.js";
-import { createPattern } from "../utils/createPattern.js";
+import { createTerms } from "./createTerms.js";
+import { createPattern } from "./createPattern.js";
 
 const CORPUS = fileURLToPath(
   new URL("../text_resources/corpus.txt", import.meta.url),
