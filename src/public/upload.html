@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload Document</title>
+  </head>
+  <body>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <label for="file">
+        <input
+          type="file"
+          placeholder="Upload a file and type your keyword..."
+          name="file"
+          id="file"
+        />
+      </label>
+      <button type="submit">Upload</button>
+    </form>
+  </body>
+</html>
